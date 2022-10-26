@@ -1,0 +1,64 @@
+name: RNX Bug Report
+description: Report an issue to RNX
+labels: [bug]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for taking the time to fill out this bug report!
+
+        Before you proceed:
+
+        - Make sure you are on latest versions of @xmartlabs/rnx-cli packages and their dependencies.
+        - If you are having an issue with your machine or build tools, the issue belongs on another to another thing outside of the scope of @xmartlabs/rnx-cli.
+
+  - type: textarea
+    attributes:
+      label: Current behavior
+      description: |
+        What code are you running and what is happening? Include a screenshot or video if it's an UI related issue.
+      placeholder: Current behavior
+    validations:
+      required: true
+  - type: textarea
+    attributes:
+      label: Expected behavior
+      description: |
+        What do you expect to happen instead?
+      placeholder: Expected behavior
+    validations:
+      required: true
+  - type: textarea
+    attributes:
+      label: Log file
+      description: |
+        Provide the log of your error.
+      placeholder: Log file content.
+    validations:
+      required: true
+  - type: checkboxes
+    attributes:
+      label: Platform
+      description: |
+        What are the platforms where you see the issue?
+      options:
+        - label: Windows
+        - label: MacOS
+    validations:
+      required: true
+  - type: textarea
+    attributes:
+      label: Environment
+      description: |
+        What are the exact versions of packages that you are using?
+
+        When filling the table below, **please remove the packages** that you're not using.
+      value: |
+        - [] I've removed the packages that I don't use
+
+        | package                                | version |
+        | -------------------------------------- | ------- |
+        | node                                   |
+        | npm or yarn                            |
+    validations:
+      required: true
