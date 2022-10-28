@@ -1,4 +1,16 @@
 // export types
+import { print } from 'gluegun'
+
+export type Spinner = ReturnType<typeof print.spin>
+
+export interface Command {
+  message: string
+  width: number
+}
+
+export interface Spinners {
+  [key: string]: Spinner
+}
 
 export enum Operations {
   Install = 'Creating project',
@@ -9,6 +21,7 @@ export enum Operations {
   CreateProjectStructure = 'Creating project structure',
   InstallReactNavigation = 'Installing React Navigation',
   AddGitConfigFiles = 'Adding Github config files & pre-push hook',
+  CloneRepoAndMoveProject = 'Cloning repo & moving RN project',
 }
 
 export enum ResultType {
