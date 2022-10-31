@@ -62,10 +62,6 @@
     "preset": "ts-jest",
     "testEnvironment": "node"
   },
-  "prettier": {
-    "semi": false,
-    "singleQuote": true
-  },
   "husky": {
     "hooks": {
       "pre-commit": "pretty-quick --staged"
