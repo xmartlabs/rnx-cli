@@ -1,4 +1,16 @@
 // export types
+import { print } from 'gluegun'
+
+export type Spinner = ReturnType<typeof print.spin>
+
+export interface Command {
+  message: string
+  width: number
+}
+
+export interface Spinners {
+  [key: string]: Spinner
+}
 
 export enum Operations {
   Install = 'Creating project',

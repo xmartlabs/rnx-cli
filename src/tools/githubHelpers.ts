@@ -1,7 +1,7 @@
 import execa from 'execa'
 import { GluegunTemplate, GluegunToolbox } from 'gluegun'
 import { Operations, Result, ResultType, YesOrNoChoice } from '../types'
-import { INDENT } from './pretty'
+import { INDENT } from './interfaceHelpers'
 import { handleOperation } from './util'
 
 const REPO_QUESTION_KEY = 'hasARepo'

@@ -1,15 +1,16 @@
 import { print } from 'gluegun'
 import chalk from 'chalk'
 import figlet from 'figlet'
+import { Command, Spinner, Spinners } from '../types'
 
 const { gray, white, bold } = print.colors
 
 export const INDENT = '   '
 export const DOUBLE_INDENT = `${INDENT}${INDENT}`
 
-export const p = (m = ''): void => print.info(gray(INDENT + m))
-
-export const heading = (m = ''): void => p(white(bold(m)))
+export const printInfo = (m = ''): void => print.info(gray(INDENT + m))
+export const printLineBreak = () => printInfo()
+export const heading = (m = ''): void => printInfo(white(bold(m)))
 
 const xlBanner = [
   `${DOUBLE_INDENT}oooooooooooooooooooooooooooooooooooooooooooooooooo`,
@@ -43,29 +44,31 @@ export const CLIHeading = (): void => {
     )
   )
   print.fancy(chalk.cyan(xlBanner.join('\n')))
-  p()
+  printLineBreak
 }
 
-export const command = (
-  m: string | { m: string; width: number } = '',
+export const printCommand = (
+  command: string | Command = '',
   second = '',
   examples: string[] = []
 ): void => {
-  m = typeof m === 'string' ? m : m.m + ' '.repeat(m.width - m.m.length)
-  p(white(m) + INDENT + gray(second))
-  const indent = m.length + 2
+  command =
+    typeof command === 'string'
+      ? command
+      : command.message + ' '.repeat(command.width - command.message.length)
+  printInfo(white(command) + INDENT + gray(second))
+  const indent = command.length + 2
   if (examples) {
-    examples.forEach((ex) => p(gray(' '.repeat(indent) + white(ex))))
+    examples.forEach((ex) => printInfo(gray(' '.repeat(indent) + white(ex))))
   }
 }
 
-type Spinner = ReturnType<typeof print.spin>
-const spinners: { [key: string]: Spinner } = {}
+const spinners: Spinners = {}
 
 export const startSpinner = (m = ''): Spinner => {
   let spinner = spinners[m]
   if (!spinner) {
-    spinner = print.spin({ prefixText: INDENT, text: gray(m) })
+    spinner = print.spin({ text: gray(m) })
     spinners[m] = spinner
   }
   return spinner
@@ -90,4 +93,4 @@ export const spinner = {
   start: startSpinner,
   stop: stopSpinner,
   clear: clearSpinners,
-} as const
+}

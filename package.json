@@ -1,8 +1,7 @@
 {
-  "name": "rnx-cli",
-  "version": "0.0.1",
+  "name": "@xmartlabs/rnx-cli",
+  "version": "0.0.2",
   "description": "rnx-cli CLI",
-  "private": true,
   "types": "build/types/types.d.ts",
   "bin": {
     "rnx-cli": "bin/rnx-cli"
@@ -10,13 +9,13 @@
   "scripts": {
     "clean-build": "rm -rf ./build",
     "compile": "tsc -p .",
-    "copy-templates": "copyfiles ./src/templates/* ./build/templates",
+    "copy-templates": "copyfiles -u 1 \"./src/templates/**/*\" ./build/templates",
     "build": "yarn clean-build && yarn compile && yarn copy-templates",
     "prepublishOnly": "yarn build",
     "format": "eslint \"**/*.{js,jsx,ts,tsx}\" --fix && prettier \"**/*.{js,jsx,ts,tsx,json}\" --write",
     "test": "jest",
     "watch": "jest --watch",
-    "snapupdate": "jest --updateSnapshot",
+    "snap-update": "jest --updateSnapshot",
     "coverage": "jest --coverage"
   },
   "files": [
@@ -26,27 +25,36 @@
     "docs",
     "bin"
   ],
+  "author": {
+    "name": "Nicolás Hernández",
+    "email": "nicolas@xmartlabs.com",
+    "url": "https://github.com/nicoache1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/xmartlabs/rnx-cli"
+  },
   "license": "MIT",
   "dependencies": {
     "chalk": "4.1.2",
     "execa": "5.1.1",
-    "figlet": "^1.5.2",
-    "gluegun": "latest"
+    "figlet": "1.5.2",
+    "gluegun": "5.1.2"
   },
   "devDependencies": {
-    "@types/jest": "^26.0.20",
-    "@types/node": "^12.7.11",
-    "@typescript-eslint/eslint-plugin": "^4.17.0",
-    "@typescript-eslint/parser": "^4.17.0",
-    "copyfiles": "^2.4.1",
-    "eslint": "^7.22.0",
-    "eslint-config-prettier": "^8.1.0",
-    "eslint-plugin-prettier": "^3.3.1",
-    "husky": "^5.1.3",
-    "jest": "^26.6.3",
-    "prettier": "^2.2.1",
-    "pretty-quick": "^3.1.0",
-    "ts-jest": "^26.5.3",
+    "@types/jest": "26.0.20",
+    "@types/node": "18.11.6",
+    "@typescript-eslint/eslint-plugin": "5.41.0",
+    "@typescript-eslint/parser": "5.41.0",
+    "copyfiles": "2.4.1",
+    "eslint": "8.26.0",
+    "eslint-config-prettier": "8.5.0",
+    "eslint-plugin-prettier": "4.2.1",
+    "husky": "5.1.3",
+    "jest": "26.6.3",
+    "prettier": "2.2.1",
+    "pretty-quick": "3.1.0",
+    "ts-jest": "26.5.3",
     "ts-node": "10.9.1",
     "typescript": "4.8.4"
   },

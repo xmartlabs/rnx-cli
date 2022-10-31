@@ -1,5 +1,11 @@
 import { GluegunToolbox } from 'gluegun'
-import { p, command, heading, CLIHeading } from '../tools/pretty'
+import {
+  heading,
+  CLIHeading,
+  printCommand,
+  printLineBreak,
+  printInfo,
+} from '../tools/interfaceHelpers'
 
 module.exports = {
   dashed: true,
@@ -10,19 +16,20 @@ module.exports = {
 
     CLIHeading()
 
-    p()
+    printLineBreak()
     heading(`Welcome to XL React Native CLI ${meta.version()}!`)
-    p()
-    p('XL React Native CLI is a CLI that helps you spin up')
-    p('a new React Native project with all the minimal configuration')
-    p('needed and it without losing any time!')
-    p()
+    printLineBreak()
+    printInfo('XL React Native CLI is a CLI that helps you spin up')
+    printInfo('a new React Native project with all the minimal configuration')
+    printInfo('needed and it without losing any time!')
+    printLineBreak()
+
     heading('Commands')
-    p()
-    command('init            ', 'Creates a new React Native app', [
+    printLineBreak()
+    printCommand('init            ', 'Creates a new React Native app', [
       'rnx-cli init MyApp',
       'rnx-cli i MyApp',
     ])
-    p()
+    printLineBreak()
   },
 }
