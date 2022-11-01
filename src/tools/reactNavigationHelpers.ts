@@ -5,7 +5,7 @@ import { GluegunToolbox, print } from 'gluegun'
 import { Operations, Result, ResultType, YesOrNoChoice } from '../types'
 import { handleOperation, installDependencies } from './util'
 import execa from 'execa'
-import { INDENT } from './pretty'
+import { INDENT } from './interfaceHelpers'
 
 const QUESTION_KEY = 'reactNavigation'
 

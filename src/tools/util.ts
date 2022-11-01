@@ -1,6 +1,6 @@
 import execa from 'execa'
 import { Operations, Result, ResultType } from '../types'
-import { startSpinner, stopSpinner } from './pretty'
+import { startSpinner, stopSpinner } from './interfaceHelpers'
 import { print } from 'gluegun'
 
 export const installDependencies = async (
