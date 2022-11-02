@@ -39,9 +39,9 @@ Prerequisites:
 
 ```bash
 # Get walked through the prompts for the different options to start your new app
-npx rnx-cli i TodoApp
 
-npx rnx-cli init TodoApp
+npx @xmartlabs/rnx-cli i TodoApp
+npx @xmartlabs/rnx-cli init TodoApp
 
 ```
 
