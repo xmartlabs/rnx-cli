@@ -38,10 +38,10 @@ Prerequisites:
 - Expo, **not supported**.
 
 ```bash
-# Get walked through the prompts for the different options to start your new app
-npx rnx-cli i TodoApp
-
-npx rnx-cli init TodoApp
+# Create your new project
+$ npx @xmartlabs/rnx-cli i TodoApp
+or
+$ npx @xmartlabs/rnx-cli init TodoApp
 
 ```
 
