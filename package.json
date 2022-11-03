@@ -78,5 +78,10 @@
     "hooks": {
       "pre-commit": "pretty-quick --staged"
     }
+  },
+  "publishConfig": {
+    "registry": "https://registry.npmjs.org/",
+    "tag": "latest",
+    "access": "public"
   }
 }
