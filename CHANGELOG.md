@@ -1,3 +1,10 @@
+## [1.0.5](https://github.com/xmartlabs/rnx-cli/compare/v1.0.4...v1.0.5) (2022-11-03)
+
+
+### Bug Fixes
+
+* **:pencil::** Improve init tool ([76f3ed2](https://github.com/xmartlabs/rnx-cli/commit/76f3ed2b4487c40d787ff0c33388833ebf238a0e))
+
 ## [1.0.4](https://github.com/xmartlabs/rnx-cli/compare/v1.0.3...v1.0.4) (2022-11-03)
 
 
