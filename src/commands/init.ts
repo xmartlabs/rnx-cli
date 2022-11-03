@@ -29,7 +29,6 @@ module.exports = {
     } = toolbox
 
     const projectName = parameters.first
-
     validateParams(error, projectName)
 
     CLIHeading()

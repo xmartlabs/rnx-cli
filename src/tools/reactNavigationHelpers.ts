@@ -1,11 +1,23 @@
 import { GluegunTemplate } from 'gluegun/build/types/toolbox/template-types'
 
 import { reactNavigationConfig } from './config'
-import { GluegunToolbox, print } from 'gluegun'
+import { GluegunToolbox } from 'gluegun'
 import { Operations, Result, ResultType, YesOrNoChoice } from '../types'
 import { handleOperation, installDependencies } from './util'
 import execa from 'execa'
-import { INDENT } from './interfaceHelpers'
+import {
+  blue,
+  bold,
+  green,
+  highlight,
+  INDENT,
+  printInfo,
+  printLineBreak,
+  red,
+  underline,
+  white,
+  yellow,
+} from './interfaceHelpers'
 
 const QUESTION_KEY = 'reactNavigation'
 
@@ -21,81 +33,67 @@ export const generateReactNavigationBoilerplate = async (
   projectName: string,
   prompt: GluegunToolbox['prompt']
 ): Promise<Result<YesOrNoChoice>> => {
-  try {
-    const askResult = await prompt.ask(askForReactNavigation)
-    const wantsReactNavigation = askResult[QUESTION_KEY] === YesOrNoChoice.Yes
+  const askResult = await prompt.ask(askForReactNavigation)
+  const wantsReactNavigation = askResult[QUESTION_KEY] === YesOrNoChoice.Yes
 
-    if (wantsReactNavigation) {
-      await handleOperation(Operations.InstallReactNavigation, async () => {
-        try {
-          await installDependencies(
-            projectName,
-            false,
-            reactNavigationConfig.dependencies.join(' ')
-          )
+  if (wantsReactNavigation) {
+    await handleOperation(
+      projectName,
+      Operations.InstallReactNavigation,
+      async () => {
+        await installDependencies(
+          projectName,
+          false,
+          reactNavigationConfig.dependencies.join(' ')
+        )
 
-          for await (const configFile of reactNavigationConfig.configurationFiles) {
-            generate({
-              template: `./reactNavigation/${configFile.template}`,
-              target: `./${projectName}/${configFile.target}`,
-            })
-          }
-
-          await execa.command(`rm -rf App.tsx`, {
-            cwd: `${process.cwd()}/${projectName}`,
+        for await (const configFile of reactNavigationConfig.configurationFiles) {
+          generate({
+            template: `./reactNavigation/${configFile.template}`,
+            target: `./${projectName}/${configFile.target}`,
           })
-
-          await generate({
-            template: `./baseScene/index.txt`,
-            target: `./${projectName}/src/scenes/welcome/index.tsx`,
-          })
-
-          await generate({
-            template: `./baseScene/styles.txt`,
-            target: `./${projectName}/src/scenes/welcome/styles.ts`,
-          })
-
-          postInstallHelper()
-
-          return {
-            type: ResultType.Success,
-          }
-        } catch (error) {
-          return {
-            type: ResultType.Fail,
-            message: 'Error installing React Navigation',
-          }
         }
-      })
-    }
 
-    return {
-      type: ResultType.Success,
-      payload: askResult[QUESTION_KEY] as YesOrNoChoice,
-    }
-  } catch (error) {
-    return {
-      type: ResultType.Fail,
-      message: 'Error generating configuration files',
-    }
+        await regenerateAppTsxAndAddBaseScene(projectName, generate)
+
+        postInstallHelper()
+      }
+    )
   }
+  return { type: ResultType.Success, payload: YesOrNoChoice.Yes }
 }
 
-export const postInstallHelper = (): void => {
-  const { red, green, blue, yellow, white, bold, underline } = print.colors
-  const space = () => print.info('')
+const regenerateAppTsxAndAddBaseScene = async (
+  projectName: string,
+  generate: GluegunTemplate['generate']
+) => {
+  await execa.command(`rm -rf App.tsx`, {
+    cwd: `${process.cwd()}/${projectName}`,
+  })
 
-  space()
-  space()
-  print.highlight(red(bold('DONT FORGET TO MODIFY THIS IN ANDROID!')))
-  space()
-  print.info(
+  await generate({
+    template: `./baseScene/index.txt`,
+    target: `./${projectName}/src/scenes/welcome/index.tsx`,
+  })
+
+  await generate({
+    template: `./baseScene/styles.txt`,
+    target: `./${projectName}/src/scenes/welcome/styles.ts`,
+  })
+}
+
+const postInstallHelper = (): void => {
+  printLineBreak()
+  printLineBreak()
+  highlight(red(bold('DONT FORGET TO MODIFY THIS IN ANDROID!')))
+  printLineBreak()
+  printInfo(
     `Add the following code to the body of ${green(
       underline('MainActivity')
     )} class:`
   )
-  space()
-  print.info(
+  printLineBreak()
+  printInfo(
     `
     ${green('@Override')}
     ${blue('protected')} ${green('void')} ${yellow('onCreate')}(${green(
@@ -105,12 +103,10 @@ export const postInstallHelper = (): void => {
     }
   `
   )
-  space()
-  print.info(
-    `and make sure to add an import statement at the top of this file:`
-  )
-  space()
-  print.info(`${blue('import ')} ${white('android.os.Bundle;')}`)
-  space()
-  space()
+  printLineBreak()
+  printInfo(`and make sure to add an import statement at the top of this file:`)
+  printLineBreak()
+  printInfo(`${blue('import ')} ${white('android.os.Bundle;')}`)
+  printLineBreak()
+  printLineBreak()
 }

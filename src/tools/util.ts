@@ -1,7 +1,7 @@
 import execa from 'execa'
 import { Operations, Result, ResultType } from '../types'
 import { startSpinner, stopSpinner } from './interfaceHelpers'
-import { print } from 'gluegun'
+import { logError } from './logging'
 
 export const installDependencies = async (
   projectName: string,
@@ -26,20 +26,25 @@ export const installDependencies = async (
   }
 }
 
-export const handleOperation = async <T = string>(
+export const handleOperation = async (
+  projectName: string,
   operation: Operations,
-  operationToHandle: () => Promise<Result<T>>
-): Promise<Result<T>> => {
-  startSpinner(operation)
+  operationToHandle: () => Promise<void>
+): Promise<void> => {
+  try {
+    startSpinner(operation)
 
-  const result = await operationToHandle()
+    await operationToHandle()
 
-  stopSpinner(operation, result.type)
-
-  if (result.type === ResultType.Fail) {
-    print.error(result.message)
+    stopSpinner(operation, ResultType.Success)
+  } catch (error) {
+    stopSpinner(operation, ResultType.Fail)
+    revertOperation(projectName)
+    logError(error)
     process.exit(1)
   }
+}
 
-  return result
+export const revertOperation = (projectName: string) => {
+  execa.command(`rm -rf ${projectName}`)
 }

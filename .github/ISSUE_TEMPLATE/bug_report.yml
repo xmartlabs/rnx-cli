@@ -28,12 +28,12 @@ body:
       placeholder: Expected behavior
     validations:
       required: true
-  - type: input
+  - type: textarea
     attributes:
-      label: Video Reproduction
+      label: Log file
       description: |
-        You must provide a way video with the problem. If you don't provide a repro, the issue will be closed automatically after a specific period.
-      placeholder: Video Reproduction
+        Provide the log of your error.
+      placeholder: Log file content.
     validations:
       required: true
   - type: checkboxes
