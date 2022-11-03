@@ -30,7 +30,6 @@ module.exports = {
 
     const projectName = parameters.first
     validateParams(error, projectName)
-
     CLIHeading()
 
     await installReactNative(projectName!)

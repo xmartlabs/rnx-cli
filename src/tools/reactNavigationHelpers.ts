@@ -84,7 +84,6 @@ const regenerateAppTsxAndAddBaseScene = async (
 
 const postInstallHelper = (): void => {
   printLineBreak()
-  printLineBreak()
   highlight(red(bold('DONT FORGET TO MODIFY THIS IN ANDROID!')))
   printLineBreak()
   printInfo(
@@ -107,6 +106,5 @@ const postInstallHelper = (): void => {
   printInfo(`and make sure to add an import statement at the top of this file:`)
   printLineBreak()
   printInfo(`${blue('import ')} ${white('android.os.Bundle;')}`)
-  printLineBreak()
   printLineBreak()
 }

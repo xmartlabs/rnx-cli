@@ -65,15 +65,19 @@ export const generateBaseProjectStructure = async (
   projectName: string,
   reactNavigationInstalled: boolean
 ) =>
-  handleOperation(projectName, Operations.CreateProjectStructure, async () => {
-    for await (const folder of reactNavigationInstalled
-      ? reactNavigationConfig.structureFolders
-      : config.structureFolders) {
-      generate({
-        template: './components/keep',
-        target: `${process.cwd()}/${projectName}${folder}${
-          folder === '/src' ? '' : '.keep'
-        }`,
-      })
+  await handleOperation(
+    projectName,
+    Operations.CreateProjectStructure,
+    async () => {
+      for await (const folder of reactNavigationInstalled
+        ? reactNavigationConfig.structureFolders
+        : config.structureFolders) {
+        generate({
+          template: './components/keep',
+          target: `${process.cwd()}/${projectName}${folder}${
+            folder === '/src' ? '' : '.keep'
+          }`,
+        })
+      }
     }
-  })
+  )
