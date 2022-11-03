@@ -1,3 +1,10 @@
+## [1.0.3](https://github.com/xmartlabs/rnx-cli/compare/v1.0.2...v1.0.3) (2022-11-03)
+
+
+### Bug Fixes
+
+* **:pencil::** Improve build templates routes ([72037fe](https://github.com/xmartlabs/rnx-cli/commit/72037fe0f20e5dafe30597b0c7c44b726d546770))
+
 ## [1.0.2](https://github.com/xmartlabs/rnx-cli/compare/v1.0.1...v1.0.2) (2022-11-03)
 
 
