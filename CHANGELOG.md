@@ -1,3 +1,10 @@
+## [1.0.1](https://github.com/xmartlabs/rnx-cli/compare/v1.0.0...v1.0.1) (2022-11-03)
+
+
+### Bug Fixes
+
+* **pencil:** second change ([3f8d724](https://github.com/xmartlabs/rnx-cli/commit/3f8d72436966963ae5e7f1db31c79804dd187f8d))
+
 # 1.0.0 (2022-11-03)
 
 
