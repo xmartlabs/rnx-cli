@@ -1,6 +1,6 @@
 {
   "name": "@xmartlabs/rnx-cli",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "private": false,
   "description": "rnx-cli CLI",
   "types": "build/types/types.d.ts",
