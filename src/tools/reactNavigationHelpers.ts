@@ -10,7 +10,6 @@ import {
   bold,
   green,
   highlight,
-  INDENT,
   printInfo,
   printLineBreak,
   red,
@@ -24,7 +23,7 @@ const QUESTION_KEY = 'reactNavigation'
 const askForReactNavigation = {
   type: 'select',
   name: QUESTION_KEY,
-  message: INDENT + 'Do you want to add React Navigation base config?',
+  message: 'Do you want to add React Navigation base config?',
   choices: [YesOrNoChoice.Yes, YesOrNoChoice.No],
 }
 

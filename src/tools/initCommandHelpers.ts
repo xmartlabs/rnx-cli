@@ -36,7 +36,7 @@ export const generateBaseComponents = async (
   })
 
 export const installBaseDependencies = async (projectName: string) =>
-  handleOperation(projectName, Operations.MinorDependencies, async () => {
+  await handleOperation(projectName, Operations.MinorDependencies, async () => {
     await installDependencies(
       projectName,
       true,
@@ -47,14 +47,14 @@ export const installBaseDependencies = async (projectName: string) =>
   })
 
 export const installReactNative = async (projectName: string) =>
-  handleOperation(projectName, Operations.Install, async () => {
+  await handleOperation(projectName, Operations.Install, async () => {
     await execa.command(
       `npx react-native init ${projectName} --template react-native-template-typescript --skip-install`
     )
   })
 
 export const installIOSDependencies = async (projectName: string) =>
-  handleOperation(projectName, Operations.iOSDependencies, async () => {
+  await handleOperation(projectName, Operations.iOSDependencies, async () => {
     await execa.command(`npx pod-install ios`, {
       cwd: `${process.cwd()}/${projectName}/ios`,
     })
