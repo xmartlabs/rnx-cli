@@ -21,6 +21,7 @@ export enum Operations {
   CreateProjectStructure = 'Creating project structure',
   InstallReactNavigation = 'Installing React Navigation',
   AddGitConfigFiles = 'Adding Github config files & pre-push hook',
+  CloneRepoAndMoveProject = 'Cloning repo & moving RN project',
 }
 
 export enum ResultType {

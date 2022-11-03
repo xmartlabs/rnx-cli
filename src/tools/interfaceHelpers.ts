@@ -3,7 +3,19 @@ import chalk from 'chalk'
 import figlet from 'figlet'
 import { Command, Spinner, Spinners } from '../types'
 
-const { gray, white, bold } = print.colors
+export const {
+  gray,
+  error,
+  green,
+  grey,
+  red,
+  bold,
+  yellow,
+  blue,
+  white,
+  underline,
+  highlight,
+} = print.colors
 
 export const INDENT = '   '
 export const DOUBLE_INDENT = `${INDENT}${INDENT}`
@@ -44,7 +56,7 @@ export const CLIHeading = (): void => {
     )
   )
   print.fancy(chalk.cyan(xlBanner.join('\n')))
-  printLineBreak
+  printLineBreak()
 }
 
 export const printCommand = (
@@ -56,8 +68,11 @@ export const printCommand = (
     typeof command === 'string'
       ? command
       : command.message + ' '.repeat(command.width - command.message.length)
+
   printInfo(white(command) + INDENT + gray(second))
+
   const indent = command.length + 2
+
   if (examples) {
     examples.forEach((ex) => printInfo(gray(' '.repeat(indent) + white(ex))))
   }
