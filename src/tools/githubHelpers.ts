@@ -79,12 +79,12 @@ const generateConfigFiles = async (
 ): Promise<void> => {
   await Promise.all([
     generate({
-      template: './githubConfig/pull_request_template.md',
-      target: `./${projectName}/.github/pull_request_template.md`,
+      template: 'githubConfig/pull_request_template.md',
+      target: `${projectName}/.github/pull_request_template.md`,
     }),
     generate({
-      template: './githubConfig/pre-push',
-      target: `./${projectName}/.github/hooks/pre-push`,
+      template: 'githubConfig/pre-push',
+      target: `${projectName}/.github/hooks/pre-push`,
     }),
   ])
 

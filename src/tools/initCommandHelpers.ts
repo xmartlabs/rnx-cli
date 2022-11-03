@@ -12,7 +12,7 @@ export const generateConfigurationFiles = async (
   await handleOperation(projectName, Operations.Configuration, async () => {
     for await (const configFile of config.configurationFiles) {
       generate({
-        template: `./configurationFiles/${configFile.template}`,
+        template: `configurationFiles/${configFile.template}`,
         target: `./${projectName}/${configFile.target}`,
       })
     }
@@ -25,11 +25,11 @@ export const generateBaseComponents = async (
   handleOperation(projectName, Operations.CreateBaseComponents, async () => {
     await Promise.all([
       generate({
-        template: './components/sceneContainer.styles.txt',
+        template: 'components/sceneContainer.styles.txt',
         target: `./${projectName}/src/components/sceneContainer/styles.ts`,
       }),
       generate({
-        template: './components/sceneContainer.txt',
+        template: 'components/sceneContainer.txt',
         target: `./${projectName}/src/components/sceneContainer/index.tsx`,
       }),
     ])
@@ -73,7 +73,7 @@ export const generateBaseProjectStructure = async (
         ? reactNavigationConfig.structureFolders
         : config.structureFolders) {
         generate({
-          template: './components/keep',
+          template: 'components/keep',
           target: `${process.cwd()}/${projectName}${folder}${
             folder === '/src' ? '' : '.keep'
           }`,

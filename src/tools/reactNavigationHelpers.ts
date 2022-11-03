@@ -49,7 +49,7 @@ export const generateReactNavigationBoilerplate = async (
 
         for await (const configFile of reactNavigationConfig.configurationFiles) {
           generate({
-            template: `./reactNavigation/${configFile.template}`,
+            template: `reactNavigation/${configFile.template}`,
             target: `./${projectName}/${configFile.target}`,
           })
         }
@@ -72,12 +72,12 @@ const regenerateAppTsxAndAddBaseScene = async (
   })
 
   await generate({
-    template: `./baseScene/index.txt`,
+    template: `baseScene/index.txt`,
     target: `./${projectName}/src/scenes/welcome/index.tsx`,
   })
 
   await generate({
-    template: `./baseScene/styles.txt`,
+    template: `baseScene/styles.txt`,
     target: `./${projectName}/src/scenes/welcome/styles.ts`,
   })
 }
