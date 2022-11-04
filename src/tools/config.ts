@@ -1,3 +1,6 @@
+import { Localize } from '../i18n'
+import { Operations as OperationType, OperationKey } from '../types'
+
 export const config = {
   dependencies: ['react-native-svg', 'react-native-safe-area-context'],
   devDependencies: [
@@ -49,4 +52,16 @@ export const reactNavigationConfig = {
     '/src/assets/fonts/',
     '/src/styles/',
   ],
+}
+
+export const operationsConfig: OperationType = {
+  [OperationKey.Install]: Localize.Operations.Install(),
+  [OperationKey.AddGitConfigFiles]: Localize.Operations.AddGitConfigFiles(),
+  [OperationKey.CloneRepoAndMoveProject]: Localize.Operations.CloneRepoAndMoveProject(),
+  [OperationKey.CreateBaseComponents]: Localize.Operations.CreateBaseComponents(),
+  [OperationKey.CreateProjectStructure]: Localize.Operations.CreateProjectStructure(),
+  [OperationKey.Configuration]: Localize.Operations.Configuration(),
+  [OperationKey.InstallReactNavigation]: Localize.Operations.Configuration(),
+  [OperationKey.MinorDependencies]: Localize.Operations.MinorDependencies(),
+  [OperationKey.iOSDependencies]: Localize.Operations.iOSDependencies(),
 }

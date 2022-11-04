@@ -1,7 +1,9 @@
 import execa from 'execa'
 import { GluegunTemplate, GluegunToolbox } from 'gluegun'
+import { PromptOptions } from 'gluegun/build/types/toolbox/prompt-enquirer-types'
 import process from 'process'
-import { Operations, YesOrNoChoice } from '../types'
+import { Localize } from '../i18n'
+import { OperationKey, YesOrNoChoice } from '../types'
 import {
   bold,
   highlight,
@@ -14,17 +16,17 @@ import { handleOperation } from './util'
 const REPO_QUESTION_KEY = 'hasARepo'
 const URL_QUESTION_KEY = 'repoUrl'
 
-const askForIfHasRepo = {
+const askForIfHasRepo: PromptOptions = {
   type: 'select',
   name: REPO_QUESTION_KEY,
-  message: 'Do you have a repository for the project?',
+  message: Localize.Github.Ask.Repo,
   choices: [YesOrNoChoice.Yes, YesOrNoChoice.No],
 }
 
-const askForUrlRepo = {
+const askForUrlRepo: PromptOptions = {
   type: 'input',
   name: URL_QUESTION_KEY,
-  message: 'What its the repository url to clone it?',
+  message: Localize.Github.Ask.Url,
 }
 
 export const addGithubConfiguration = async (
@@ -38,7 +40,7 @@ export const addGithubConfiguration = async (
   if (repoAnswer[REPO_QUESTION_KEY] === YesOrNoChoice.Yes) {
     await handleOperation(
       projectName,
-      Operations.CloneRepoAndMoveProject,
+      OperationKey.CloneRepoAndMoveProject,
       async () =>
         cloneRepoAndMoveProject(
           repoAnswer[REPO_QUESTION_KEY],
@@ -48,7 +50,7 @@ export const addGithubConfiguration = async (
     )
   }
 
-  await handleOperation(projectName, Operations.AddGitConfigFiles, async () =>
+  await handleOperation(projectName, OperationKey.AddGitConfigFiles, async () =>
     generateConfigFiles(generate, projectName, hasARepo)
   )
 }
@@ -104,11 +106,11 @@ const generateConfigFiles = async (
 const postInstallHelper = (): void => {
   printLineBreak()
   printLineBreak()
-  highlight(red(bold('DONT FORGET TO SETUP YOUR GIT HOOKS RUNNING')))
+  highlight(red(bold(Localize.Github.DontForget())))
   printLineBreak()
-  printInfo('git config core.hooksPath .github/hooks')
+  printInfo(Localize.Github.Command())
   printLineBreak()
-  printInfo('In your project repository folder')
+  printInfo(Localize.Github.Repository())
   printLineBreak()
   printLineBreak()
 }

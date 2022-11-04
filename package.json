@@ -19,7 +19,8 @@
     "snap-update": "jest --updateSnapshot",
     "coverage": "jest --coverage",
     "publish:release": "npm publish",
-    "semantic-release": "semantic-release"
+    "semantic-release": "semantic-release",
+    "typesafe-i18n": "typesafe-i18n"
   },
   "files": [
     "build",
@@ -27,6 +28,13 @@
     "readme.md",
     "docs",
     "bin"
+  ],
+  "keywords": [
+    "React-Native",
+    "CLI",
+    "React",
+    "Mobile",
+    "Xmartlabs"
   ],
   "author": {
     "name": "Nicolás Hernández",
@@ -39,12 +47,15 @@
   },
   "license": "MIT",
   "dependencies": {
+    "@commitlint/cli": "17.2.0",
+    "@commitlint/config-conventional": "17.2.0",
     "chalk": "4.1.2",
     "execa": "5.1.1",
     "figlet": "1.5.2",
     "gluegun": "5.1.2",
     "pino": "8.7.0",
-    "pino-pretty": "9.1.1"
+    "pino-pretty": "9.1.1",
+    "typesafe-i18n": "5.16.2"
   },
   "devDependencies": {
     "@semantic-release/changelog": "6.0.1",

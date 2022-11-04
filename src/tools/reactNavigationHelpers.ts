@@ -2,7 +2,7 @@ import { GluegunTemplate } from 'gluegun/build/types/toolbox/template-types'
 
 import { reactNavigationConfig } from './config'
 import { GluegunToolbox } from 'gluegun'
-import { Operations, Result, ResultType, YesOrNoChoice } from '../types'
+import { OperationKey, Result, ResultType, YesOrNoChoice } from '../types'
 import { handleOperation, installDependencies } from './util'
 import execa from 'execa'
 import {
@@ -17,13 +17,15 @@ import {
   white,
   yellow,
 } from './interfaceHelpers'
+import { Localize } from '../i18n'
+import { PromptOptions } from 'gluegun/build/types/toolbox/prompt-enquirer-types'
 
 const QUESTION_KEY = 'reactNavigation'
 
-const askForReactNavigation = {
+const askForReactNavigation: PromptOptions = {
   type: 'select',
   name: QUESTION_KEY,
-  message: 'Do you want to add React Navigation base config?',
+  message: Localize.Navigation.Ask.Config,
   choices: [YesOrNoChoice.Yes, YesOrNoChoice.No],
 }
 
@@ -38,7 +40,7 @@ export const generateReactNavigationBoilerplate = async (
   if (wantsReactNavigation) {
     await handleOperation(
       projectName,
-      Operations.InstallReactNavigation,
+      OperationKey.InstallReactNavigation,
       async () => {
         await installDependencies(
           projectName,
@@ -83,12 +85,12 @@ const regenerateAppTsxAndAddBaseScene = async (
 
 const postInstallHelper = (): void => {
   printLineBreak()
-  highlight(red(bold('DONT FORGET TO MODIFY THIS IN ANDROID!')))
+  highlight(red(bold(Localize.Navigation.DontForget())))
   printLineBreak()
   printInfo(
-    `Add the following code to the body of ${green(
-      underline('MainActivity')
-    )} class:`
+    Localize.Navigation.AddCode({
+      activity: green(underline('MainActivity')),
+    })
   )
   printLineBreak()
   printInfo(
@@ -102,7 +104,7 @@ const postInstallHelper = (): void => {
   `
   )
   printLineBreak()
-  printInfo(`and make sure to add an import statement at the top of this file:`)
+  printInfo(Localize.Navigation.makeSure())
   printLineBreak()
   printInfo(`${blue('import ')} ${white('android.os.Bundle;')}`)
   printLineBreak()

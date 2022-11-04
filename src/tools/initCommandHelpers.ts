@@ -2,14 +2,14 @@ import { GluegunTemplate } from 'gluegun/build/types/toolbox/template-types'
 
 import * as execa from 'execa'
 import { config, reactNavigationConfig } from './config'
-import { Operations } from '../types'
+import { OperationKey } from '../types'
 import { handleOperation, installDependencies } from './util'
 
 export const generateConfigurationFiles = async (
   generate: GluegunTemplate['generate'],
   projectName: string
 ) =>
-  await handleOperation(projectName, Operations.Configuration, async () => {
+  await handleOperation(projectName, OperationKey.Configuration, async () => {
     for await (const configFile of config.configurationFiles) {
       generate({
         template: `configurationFiles/${configFile.template}`,
@@ -22,7 +22,7 @@ export const generateBaseComponents = async (
   generate: GluegunTemplate['generate'],
   projectName: string
 ) =>
-  handleOperation(projectName, Operations.CreateBaseComponents, async () => {
+  handleOperation(projectName, OperationKey.CreateBaseComponents, async () => {
     await Promise.all([
       generate({
         template: 'components/sceneContainer.styles.txt',
@@ -36,25 +36,33 @@ export const generateBaseComponents = async (
   })
 
 export const installBaseDependencies = async (projectName: string) =>
-  await handleOperation(projectName, Operations.MinorDependencies, async () => {
-    await installDependencies(
-      projectName,
-      true,
-      config.devDependencies.join(' ')
-    )
+  await handleOperation(
+    projectName,
+    OperationKey.MinorDependencies,
+    async () => {
+      await installDependencies(
+        projectName,
+        true,
+        config.devDependencies.join(' ')
+      )
 
-    await installDependencies(projectName, false, config.dependencies.join(' '))
-  })
+      await installDependencies(
+        projectName,
+        false,
+        config.dependencies.join(' ')
+      )
+    }
+  )
 
 export const installReactNative = async (projectName: string) =>
-  await handleOperation(projectName, Operations.Install, async () => {
+  await handleOperation(projectName, OperationKey.Install, async () => {
     await execa.command(
       `npx react-native init ${projectName} --template react-native-template-typescript --skip-install`
     )
   })
 
 export const installIOSDependencies = async (projectName: string) =>
-  await handleOperation(projectName, Operations.iOSDependencies, async () => {
+  await handleOperation(projectName, OperationKey.iOSDependencies, async () => {
     await execa.command(`npx pod-install ios`, {
       cwd: `${process.cwd()}/${projectName}/ios`,
     })
@@ -67,7 +75,7 @@ export const generateBaseProjectStructure = async (
 ) =>
   await handleOperation(
     projectName,
-    Operations.CreateProjectStructure,
+    OperationKey.CreateProjectStructure,
     async () => {
       for await (const folder of reactNavigationInstalled
         ? reactNavigationConfig.structureFolders

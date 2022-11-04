@@ -1,5 +1,4 @@
-/* eslint-disable @typescript-eslint/no-non-null-assertion */
-import { GluegunPrint, GluegunToolbox } from 'gluegun'
+import { GluegunParameters, GluegunPrint, GluegunToolbox } from 'gluegun'
 
 import { CLIHeading, printLineBreak } from '../tools/interfaceHelpers'
 
@@ -28,37 +27,45 @@ module.exports = {
       prompt,
     } = toolbox
 
-    const projectName = parameters.first
-    validateParams(error, projectName)
+    const { projectName } = validateParams(error, parameters)
     CLIHeading()
 
-    await installReactNative(projectName!)
-    await addGithubConfiguration(generate, projectName!, prompt)
-    await installBaseDependencies(projectName!)
+    await installReactNative(projectName)
+    await addGithubConfiguration(generate, projectName, prompt)
+    await installBaseDependencies(projectName)
 
     const result = await generateReactNavigationBoilerplate(
       generate,
-      projectName!,
+      projectName,
       prompt
     )
-    await installIOSDependencies(projectName!)
-    await generateConfigurationFiles(generate, projectName!)
+    await installIOSDependencies(projectName)
+    await generateConfigurationFiles(generate, projectName)
     await generateBaseProjectStructure(
       generate,
-      projectName!,
+      projectName,
       result.payload === YesOrNoChoice.Yes
     )
-    await generateBaseComponents(generate, projectName!)
+    await generateBaseComponents(generate, projectName)
 
     process.exit(1)
   },
 }
 
-const validateParams = (error: GluegunPrint['error'], projectName?: string) => {
+const validateParams = (
+  error: GluegunPrint['error'],
+  parameters: GluegunParameters
+) => {
+  const projectName = parameters.first
+
   if (!projectName) {
     printLineBreak()
     error('You miss the project name param.\n"For example: rnx-cli i MyApp"')
     printLineBreak()
     process.exit(1)
+  }
+
+  return {
+    projectName,
   }
 }
