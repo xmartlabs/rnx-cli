@@ -1,3 +1,14 @@
+## [1.1.1](https://github.com/xmartlabs/rnx-cli/compare/v1.1.0...v1.1.1) (2022-11-04)
+
+
+### Bug Fixes
+
+* **:bug: ghaction:** solve bad sintax in gh action yml ([e54d52d](https://github.com/xmartlabs/rnx-cli/commit/e54d52d97eccfc95207644b1d7d3d0ca7b8897d9))
+* **:bug::** improve release workflow ([b94f699](https://github.com/xmartlabs/rnx-cli/commit/b94f69968dbc77ef463ba9d567728aae8cef7d3e))
+* **:bug::** improve token handling ([e1a3147](https://github.com/xmartlabs/rnx-cli/commit/e1a31475e78dd6672e831288da3aef5e943c3321))
+* **🔒security:** solve security issue with some dependency ([3057a97](https://github.com/xmartlabs/rnx-cli/commit/3057a972d5218238d4ff9c4d8f915f7860e51753))
+* test branch protection rules ([5045737](https://github.com/xmartlabs/rnx-cli/commit/50457371607c54f34e2d39eee5a7d2cb7ca995d2))
+
 # [1.1.0](https://github.com/xmartlabs/rnx-cli/compare/v1.0.6...v1.1.0) (2022-11-04)
 
 
