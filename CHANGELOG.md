@@ -1,3 +1,10 @@
+# [1.1.0](https://github.com/xmartlabs/rnx-cli/compare/v1.0.6...v1.1.0) (2022-11-04)
+
+
+### Features
+
+* **:pencil::** "add i18n & commitlint" ([ad6de7a](https://github.com/xmartlabs/rnx-cli/commit/ad6de7ae9585fcb74d1d221fa6a6baee79a76aac))
+
 ## [1.0.6](https://github.com/xmartlabs/rnx-cli/compare/v1.0.5...v1.0.6) (2022-11-03)
 
 
