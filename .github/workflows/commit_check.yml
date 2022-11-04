@@ -1,9 +1,8 @@
 name: Run commitlint on PR
-on: pull-request
+on: pull-request:
 
 jobs:
-  commit-check:
-    name: Check the format of the commits in PR
+  build:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
