@@ -1,5 +1,6 @@
 import execa from 'execa'
-import { Operations, Result, ResultType } from '../types'
+import { OperationKey, Result, ResultType } from '../types'
+import { operationsConfig } from './config'
 import { startSpinner, stopSpinner } from './interfaceHelpers'
 import { logError } from './logging'
 
@@ -28,17 +29,19 @@ export const installDependencies = async (
 
 export const handleOperation = async (
   projectName: string,
-  operation: Operations,
+  operation: OperationKey,
   operationToHandle: () => Promise<void>
 ): Promise<void> => {
+  const message = operationsConfig[operation]
+
   try {
-    startSpinner(operation)
+    startSpinner(message)
 
     await operationToHandle()
 
-    stopSpinner(operation, ResultType.Success)
+    stopSpinner(message, ResultType.Success)
   } catch (error) {
-    stopSpinner(operation, ResultType.Fail)
+    stopSpinner(message, ResultType.Fail)
     revertOperation(projectName)
     logError(error)
     process.exit(1)

@@ -12,17 +12,36 @@ export interface Spinners {
   [key: string]: Spinner
 }
 
-export enum Operations {
-  Install = 'Creating project',
-  Configuration = 'Creating configuration files',
-  MinorDependencies = 'Installing dependencies, this may take a while...',
-  iOSDependencies = 'Installing iOS dependencies',
-  CreateBaseComponents = 'Creating base components',
-  CreateProjectStructure = 'Creating project structure',
-  InstallReactNavigation = 'Installing React Navigation',
-  AddGitConfigFiles = 'Adding Github config files & pre-push hook',
-  CloneRepoAndMoveProject = 'Cloning repo & moving RN project',
+export enum OperationKey {
+  Install = 'Install',
+  Configuration = 'Configuration',
+  MinorDependencies = 'MinorDependencies',
+  iOSDependencies = 'iOSDependencies',
+  CreateBaseComponents = 'CreateBaseComponents',
+  CreateProjectStructure = 'CreateProjectStructure',
+  InstallReactNavigation = 'InstallReactNavigation',
+  AddGitConfigFiles = 'AddGitConfigFiles',
+  CloneRepoAndMoveProject = 'CloneRepoAndMoveProject',
 }
+
+export interface OperationMessages {
+  message: string
+  errorMessage: string
+}
+
+interface BaseOperations<T> {
+  [OperationKey.Install]: T
+  [OperationKey.Configuration]: T
+  [OperationKey.MinorDependencies]: T
+  [OperationKey.iOSDependencies]: T
+  [OperationKey.CreateBaseComponents]: T
+  [OperationKey.CreateProjectStructure]: T
+  [OperationKey.InstallReactNavigation]: T
+  [OperationKey.AddGitConfigFiles]: T
+  [OperationKey.CloneRepoAndMoveProject]: T
+}
+
+export type Operations = BaseOperations<string>
 
 export enum ResultType {
   Success = '✅',
