@@ -1,3 +1,12 @@
+## [1.1.2](https://github.com/xmartlabs/rnx-cli/compare/v1.1.1...v1.1.2) (2022-11-10)
+
+
+### Bug Fixes
+
+* upgrade formatters devdeps ([1ab328d](https://github.com/xmartlabs/rnx-cli/commit/1ab328d88b9863f6d5b3e3ce3cc3be97c7ca4509))
+* upgrade pretty-quick devdep ([a737e51](https://github.com/xmartlabs/rnx-cli/commit/a737e515f1a07d0d9d9125925ba5d504e9c2badc))
+* upgrade ts eslint plugins  devdeps ([a1b5a5f](https://github.com/xmartlabs/rnx-cli/commit/a1b5a5f9c9b44c52962344001c0bc25a29d26ca7))
+
 ## [1.1.1](https://github.com/xmartlabs/rnx-cli/compare/v1.1.0...v1.1.1) (2022-11-04)
 
 
