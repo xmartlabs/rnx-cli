@@ -4719,10 +4719,10 @@ type-fest@^1.0.2:
   resolved "https://registry.yarnpkg.com/type-fest/-/type-fest-1.4.0.tgz#e9fb813fe3bf1744ec359d55d1affefa76f14be1"
   integrity sha512-yGSza74xk0UG8k+pLh5oeoYirvIiWo5t0/o3zHHAO2tRDiZcxWP7fywNlXhqb6/r6sWvwi+RsyQMWhVLe4BVuA==
 
-typesafe-i18n@5.16.2:
-  version "5.16.2"
-  resolved "https://registry.yarnpkg.com/typesafe-i18n/-/typesafe-i18n-5.16.2.tgz#2cf830f9af8f484df890c06d6818fce68273f6b1"
-  integrity sha512-s1eVQUhq7e0nbVm5Ntb3fLmA1UNi3yEUZN0VCPGGAzVAyS2IUdtDP1J9DINGgbFmBUkHwEAZ6DPSRl9Ca1cPaA==
+typesafe-i18n@5.16.3:
+  version "5.16.3"
+  resolved "https://registry.yarnpkg.com/typesafe-i18n/-/typesafe-i18n-5.16.3.tgz#39a8bcdf3d987851187ae1b87033a57b8b4089b6"
+  integrity sha512-9KxHDFzNW5vA1a4kVPEm9Jslch0H5W2IkPcJjuaqofr86U0EXkrkvF3IbPjzwnWwEf/wC900ZE7RPnePW5KYKg==
 
 typescript@4.8.4, typescript@^4.6.4:
   version "4.8.4"
