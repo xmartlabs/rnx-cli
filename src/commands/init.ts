@@ -30,7 +30,7 @@ module.exports = {
     const { projectName } = validateParams(error, parameters)
     CLIHeading()
 
-    await installReactNative(projectName)
+    await installReactNative(projectName, parameters.options)
     await addGithubConfiguration(generate, projectName, prompt)
     await installBaseDependencies(projectName)
 
