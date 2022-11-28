@@ -45,6 +45,8 @@ npx @xmartlabs/rnx-cli init TodoApp
 
 ```
 
+For more info about the commands supported you can check [here](./docs/commands.md)
+
 ## Troubleshooting
 
 - Sometimes npx takes the cached version of the library. If that happens you can run `npm cache clear --force` to wipe out the cache and then try to run again the command. If the library ask you to install again then its ok.

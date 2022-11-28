@@ -17,23 +17,23 @@ import {
   white,
   yellow,
 } from './interfaceHelpers'
-import { Localize } from '../i18n'
+import { strings as Localize } from '../strings'
 import { PromptOptions } from 'gluegun/build/types/toolbox/prompt-enquirer-types'
 
 const QUESTION_KEY = 'reactNavigation'
-
-const askForReactNavigation: PromptOptions = {
-  type: 'select',
-  name: QUESTION_KEY,
-  message: Localize.Navigation.Ask.Config,
-  choices: [YesOrNoChoice.Yes, YesOrNoChoice.No],
-}
 
 export const generateReactNavigationBoilerplate = async (
   generate: GluegunTemplate['generate'],
   projectName: string,
   prompt: GluegunToolbox['prompt']
 ): Promise<Result<YesOrNoChoice>> => {
+  const askForReactNavigation: PromptOptions = {
+    type: 'select',
+    name: QUESTION_KEY,
+    message: Localize.Navigation.Ask.Config,
+    choices: [YesOrNoChoice.Yes, YesOrNoChoice.No],
+  }
+
   const askResult = await prompt.ask(askForReactNavigation)
   const wantsReactNavigation = askResult[QUESTION_KEY] === YesOrNoChoice.Yes
 
@@ -85,13 +85,9 @@ const regenerateAppTsxAndAddBaseScene = async (
 
 const postInstallHelper = (): void => {
   printLineBreak()
-  highlight(red(bold(Localize.Navigation.DontForget())))
+  highlight(red(bold(Localize.Navigation.DontForget)))
   printLineBreak()
-  printInfo(
-    Localize.Navigation.AddCode({
-      activity: green(underline('MainActivity')),
-    })
-  )
+  printInfo(Localize.Navigation.AddCode(green(underline('MainActivity'))))
   printLineBreak()
   printInfo(
     `
@@ -104,7 +100,7 @@ const postInstallHelper = (): void => {
   `
   )
   printLineBreak()
-  printInfo(Localize.Navigation.makeSure())
+  printInfo(Localize.Navigation.makeSure)
   printLineBreak()
   printInfo(`${blue('import ')} ${white('android.os.Bundle;')}`)
   printLineBreak()

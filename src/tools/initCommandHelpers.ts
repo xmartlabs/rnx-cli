@@ -4,6 +4,7 @@ import * as execa from 'execa'
 import { config, reactNavigationConfig } from './config'
 import { OperationKey } from '../types'
 import { handleOperation, installDependencies } from './util'
+import { GluegunParameters } from 'gluegun'
 
 export const generateConfigurationFiles = async (
   generate: GluegunTemplate['generate'],
@@ -54,10 +55,16 @@ export const installBaseDependencies = async (projectName: string) =>
     }
   )
 
-export const installReactNative = async (projectName: string) =>
+export const installReactNative = async (
+  projectName: string,
+  options?: GluegunParameters['options']
+) =>
   await handleOperation(projectName, OperationKey.Install, async () => {
+    const templateVersion = options['templateVersion']
+      ? `@${options['version']}`
+      : ''
     await execa.command(
-      `npx react-native init ${projectName} --template react-native-template-typescript --skip-install`
+      `npx react-native init ${projectName} --template react-native-template-typescript${templateVersion} --skip-install `
     )
   })
 

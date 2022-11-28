@@ -2,7 +2,7 @@ import execa from 'execa'
 import { GluegunTemplate, GluegunToolbox } from 'gluegun'
 import { PromptOptions } from 'gluegun/build/types/toolbox/prompt-enquirer-types'
 import process from 'process'
-import { Localize } from '../i18n'
+import { strings as Localize } from '../strings'
 import { OperationKey, YesOrNoChoice } from '../types'
 import {
   bold,
@@ -21,12 +21,6 @@ const askForIfHasRepo: PromptOptions = {
   name: REPO_QUESTION_KEY,
   message: Localize.Github.Ask.Repo,
   choices: [YesOrNoChoice.Yes, YesOrNoChoice.No],
-}
-
-const askForUrlRepo: PromptOptions = {
-  type: 'input',
-  name: URL_QUESTION_KEY,
-  message: Localize.Github.Ask.Url,
 }
 
 export const addGithubConfiguration = async (
@@ -53,6 +47,12 @@ export const addGithubConfiguration = async (
   await handleOperation(projectName, OperationKey.AddGitConfigFiles, async () =>
     generateConfigFiles(generate, projectName, hasARepo)
   )
+}
+
+const askForUrlRepo: PromptOptions = {
+  type: 'input',
+  name: URL_QUESTION_KEY,
+  message: Localize.Github.Ask.Url,
 }
 
 const cloneRepoAndMoveProject = async (
@@ -106,11 +106,11 @@ const generateConfigFiles = async (
 const postInstallHelper = (): void => {
   printLineBreak()
   printLineBreak()
-  highlight(red(bold(Localize.Github.DontForget())))
+  highlight(red(bold(Localize.Github.DontForget)))
   printLineBreak()
-  printInfo(Localize.Github.Command())
+  printInfo(Localize.Github.Command)
   printLineBreak()
-  printInfo(Localize.Github.Repository())
+  printInfo(Localize.Github.Repository)
   printLineBreak()
   printLineBreak()
 }

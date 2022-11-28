@@ -1,6 +1,4 @@
-import type { BaseTranslation } from '../i18n-types'
-
-const en: BaseTranslation = {
+export const strings = {
   Github: {
     Ask: {
       Repo: 'Do you have a repository for the project?',
@@ -11,15 +9,17 @@ const en: BaseTranslation = {
     Repository: 'In your project repository folder',
   },
   Error: {
-    logFile: `An error happens, for more info please check the log file {filePath:string}!`,
-    operation: 'Error: {message: string}',
+    logFile: (filePath: string) =>
+      `An error happens, for more info please check the log file ${filePath}!`,
+    operation: (message: string) => `Error: ${message}`,
   },
   Navigation: {
     Ask: {
       Config: 'Do you want to add React Navigation base config?',
     },
     DontForget: `DON'T FORGET TO MODIFY THIS IN ANDROID!`,
-    AddCode: 'Add the following code to the body of {activity: string} class:`',
+    AddCode: (activity: string) =>
+      `Add the following code to the body of ${activity} class:`,
     makeSure: `and make sure to add an import statement at the top of this file:`,
   },
   Operations: {
@@ -34,5 +34,3 @@ const en: BaseTranslation = {
     CloneRepoAndMoveProject: 'Cloning repo & moving RN project',
   },
 }
-
-export default en

@@ -2,7 +2,7 @@ import pino from 'pino'
 import { tmpdir } from 'os'
 import { join } from 'path'
 import { printInfo, printLineBreak } from './interfaceHelpers'
-import { Localize } from '../i18n'
+import { strings as Localize } from '../strings'
 
 const destinationFilePath = join(tmpdir(), `rnx-cli-error-${process.pid}`)
 
@@ -24,7 +24,7 @@ export const logError = (error: Error) => {
   printLineBreak()
   logger.error(error)
   printLineBreak()
-  printInfo(Localize.Error.logFile({ filePath: destinationFilePath }))
+  printInfo(Localize.Error.logFile(destinationFilePath))
 }
 
 export const logInfo = (info: never) => {
