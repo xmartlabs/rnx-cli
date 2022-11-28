@@ -1,3 +1,15 @@
+# [1.2.0](https://github.com/xmartlabs/rnx-cli/compare/v1.1.2...v1.2.0) (2022-11-28)
+
+
+### Bug Fixes
+
+* solve issues with strings ([9b6856a](https://github.com/xmartlabs/rnx-cli/commit/9b6856a8466fa3f2ed6b4f67d8a0ff3d376e3407))
+
+
+### Features
+
+* support versioning of the template ([eb1cdbc](https://github.com/xmartlabs/rnx-cli/commit/eb1cdbce7807a7ad5d9f4a2126c23c02aed885b8))
+
 ## [1.1.2](https://github.com/xmartlabs/rnx-cli/compare/v1.1.1...v1.1.2) (2022-11-10)
 
 
