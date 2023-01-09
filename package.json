@@ -46,7 +46,7 @@
   },
   "license": "MIT",
   "dependencies": {
-    "@commitlint/cli": "17.2.0",
+    "@commitlint/cli": "17.4.1",
     "@commitlint/config-conventional": "17.2.0",
     "chalk": "4.1.2",
     "execa": "5.1.1",
